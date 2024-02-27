@@ -1,0 +1,49 @@
+﻿<Window x:Class="AnotherBird.Views.Windows.NewAccount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:data="clr-namespace:AnotherBird.ViewModels.Windows"
+        xmlns:local="clr-namespace:AnotherBird"
+        ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+        ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+        mc:Ignorable="d"
+        Title="NewAccount" Height="450" Width="800"
+        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+        Background="{DynamicResource ApplicationBackgroundBrush}">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center"
+                    Margin="0,50,0,0"
+                    Width="300">
+            <StackPanel.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value ="#FFDCAEAE"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <Label>Account Name</Label>
+            <ui:TextBox Text="{Binding AccountName}"></ui:TextBox>
+            <Label>Email</Label>
+            <ui:TextBox Text="{Binding UserMail}"></ui:TextBox>
+            <Label Foreground="#FFDCAEAE">Password</Label>
+            <PasswordBox
+                local:PasswordBoxAssistant.BindPassword="true"
+                local:PasswordBoxAssistant.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></PasswordBox>
+            <Label>Smtp</Label>
+            <ui:TextBox Text="{Binding Smtp}"></ui:TextBox>
+            <Label>Imap</Label>
+            <ui:TextBox Text="{Binding Imap}"></ui:TextBox>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="5,10,5,0"></Setter>
+                        <Setter Property="Width" Value="50"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <ui:Button Click="SaveNewAccount">Save</ui:Button>
+                <ui:Button>Abort</ui:Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
