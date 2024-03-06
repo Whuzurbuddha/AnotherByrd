@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:windows="clr-namespace:AnotherByrd.Views.Windows"
-    Title="{Binding windows:MainWindowViewModel.ApplicationTitle, Mode=OneWay}"
+    Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"
     Width="1100"
     Height="650"
     d:DataContext="{d:DesignInstance windows:MainWindow,
@@ -36,9 +36,6 @@
             IsPaneToggleVisible="True"
             MenuItemsSource="{Binding ViewModel.MenuItems, Mode=OneWay}"
             PaneDisplayMode="LeftFluent">
-            <ui:NavigationView.Header>
-                <ui:BreadcrumbBar x:Name="BreadcrumbBar" Margin="5" />
-            </ui:NavigationView.Header>
             <ui:NavigationView.ContentOverlay>
                 <Grid>
                     <ui:SnackbarPresenter x:Name="SnackbarPresenter" />
@@ -53,13 +50,12 @@
 
         <ui:TitleBar
             x:Name="TitleBar"
-            Title="{Binding windows:MainWindowViewModel.ApplicationTitle}"
+            Title="Another Byrd"
             Grid.Row="0"
-            CloseWindowByDoubleClickOnIcon="True"
-            Height="30">
+            CloseWindowByDoubleClickOnIcon="True">
             <ui:TitleBar.Icon>
-                <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui-icon-256.png" />
+                <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui-icon-1024.png" />
             </ui:TitleBar.Icon>
-         </ui:TitleBar>
+        </ui:TitleBar>
     </Grid>
 </ui:FluentWindow>

@@ -76,3 +76,4 @@ C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\bin\Debug\net8.0-window
 C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\bin\Debug\net8.0-windows\MimeKit.dll
 C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Pages\FileView.baml
 C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Windows\NewAccount.baml
+C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\AnotherByrd.sourcelink.json

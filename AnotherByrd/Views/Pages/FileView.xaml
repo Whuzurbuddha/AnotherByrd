@@ -5,10 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:fileview="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
       xmlns:file="clr-namespace:AnotherBird.Models"
+      xmlns:models="clr-namespace:AnotherByrd.Models"
       mc:Ignorable="d"
       Title="FileView" Height="450" Width="800">
     <Page.DataContext>
-        <file:GetMailViewModel></file:GetMailViewModel>
+        <models:GetMailViewModel></models:GetMailViewModel>
     </Page.DataContext>
     <Grid>
         <fileview:WebView2 Name="WebView"/>

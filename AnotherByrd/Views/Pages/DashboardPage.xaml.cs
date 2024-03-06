@@ -1,9 +1,4 @@
-﻿// This Source Code Form is subject to the terms of the MIT License.
-// If a copy of the MIT was not distributed with this file, You can obtain one at https://opensource.org/licenses/MIT.
-// Copyright (C) Leszek Pomianowski and WPF UI Contributors.
-// All Rights Reserved.
-
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Controls;
 using AnotherBird;
@@ -11,6 +6,7 @@ using AnotherBird.Models;
 using AnotherBird.ViewModels.Pages;
 using AnotherBird.Views.Windows;
 using AnotherByrd.Datacontroller;
+using AnotherByrd.Models;
 using AnotherByrd.ViewModels.Pages;
 using Wpf.Ui.Controls;
 using TreeViewItem = Wpf.Ui.Controls.TreeViewItem;
@@ -19,7 +15,7 @@ namespace AnotherByrd.Views.Pages
 {
     public partial class DashboardPage : INavigableView<DashboardViewModel>
     {
-        public DashboardViewModel? ViewModel { get; }
+        public DashboardViewModel ViewModel { get; }
         private SendMailView? _newMailWindow;
         private GetMailViewModel? _getMailViewModel;
 
@@ -34,8 +30,13 @@ namespace AnotherByrd.Views.Pages
             if (!CheckIfAccountExits()) return;
             _getMailViewModel = new GetMailViewModel();
             DataContext = _getMailViewModel;
-            DownloadMails();
-            LoadMailOverview();
+            Loaded += GetContent;
+        }
+
+        private async void GetContent(object sender, RoutedEventArgs gc)
+        {
+            await LoadMailOverview();
+            //await DownloadMails();
         }
 
         private void OpenNewMailWindow(object sender, RoutedEventArgs e)
@@ -74,7 +75,7 @@ namespace AnotherByrd.Views.Pages
             if (sender is not TreeViewItem { IsExpanded: true } provider) return;
             if (provider.DataContext is ReadMailCache.UserContent mailAccount)
             {
-                (DataContext as MailContentViewModel)?.SetSelectedMailProvider(mailAccount.MailAddress,
+                (ReceivedMailOverview.DataContext as MailContentViewModel)?.SetSelectedMailProvider(mailAccount.MailAddress,
                     mailAccount.Smtp, mailAccount.EncryptedPwd);
             }
         }
@@ -84,18 +85,18 @@ namespace AnotherByrd.Views.Pages
             if (sender is not DockPanel inbox) return;
             if (inbox.DataContext is ReadMailCache.UserContent userContent)
             {
-                //MailInbox.SetMailbox(userContent.Mailbox);
+                (DataContext as GetMailViewModel)?.SetMailBoxSelection(userContent.Mailbox);
             }
         }
 
-        private void DownloadMails()
+        private async Task DownloadMails()
         {
-            (DataContext as GetMailViewModel)?.GetMailsFromServer();
+            await (DataContext as GetMailViewModel)?.GetMailsFromServer()!;
         }
 
-        private void LoadMailOverview()
+        private async Task LoadMailOverview()
         {
-            (DataContext as GetMailViewModel)?.GetUserAccounts();
+            await (ProviderOverview.DataContext as GetMailViewModel)?.GetUserAccounts()!;
         }
 
         public void RefreshProviderOverview()
@@ -112,16 +113,6 @@ namespace AnotherByrd.Views.Pages
                 Directory.CreateDirectory($@"{ConstPaths.MainDirectory!}\mailaccounts");
             }
 
-            if (!File.Exists($@"{ConstPaths.MainDirectory!}\mainaccount"))
-            {
-                Directory.CreateDirectory($@"{ConstPaths.MainDirectory!}\mainaccount");
-            }
-
-            if (!File.Exists(ConstPaths.CachePath))
-            {
-                Directory.CreateDirectory(ConstPaths.CachePath!);
-            }
-
             var accounts = Directory.GetDirectories($@"{ConstPaths.MainDirectory!}\mailaccounts");
             if (accounts.Length == 0)
             {
@@ -134,10 +125,12 @@ namespace AnotherByrd.Views.Pages
         }
         private void SetSender(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("SELECTED MAIL");
             if (sender is not DataGridRow { IsSelected: true } dataGridRow) return;
             if (dataGridRow.DataContext is ReadMailCache.MailItem mailItem)
             {
-                (DataContext as GetMailViewModel)?.SetSelectedMailText(mailItem.MessageText, mailItem.MessageSender, mailItem.AttachmentList);
+                (DataContext as GetMailViewModel)?.SetSelectedMailText(mailItem);
+                Console.WriteLine(mailItem.MessageText);
                 if (mailItem.HasAttachment == true)
                 {
                     AttachmentList.Visibility = Visibility.Visible;

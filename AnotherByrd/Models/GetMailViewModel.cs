@@ -1,47 +1,24 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using AnotherByrd.Datacontroller;
 
-namespace AnotherBird.Models;
+namespace AnotherByrd.Models;
 
 public class GetMailViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    private string? _selectedMailText;
-    private string? _selectedMailSender;
-    private ObservableCollection<ReadMailCache.AttachmentListitem>? _selectedMailAttachmentList;
+    private ReadMailCache.MailItem? _selectedMail;
     private ObservableCollection<ReadMailCache.MailItem>? _selectedMailbox;
     private ObservableCollection<ReadMailCache.UserContent>? _userAccounts;
 
-    public string? SelectedMailText
+    public ReadMailCache.MailItem? SelectedMail
     {
-        get => _selectedMailText;
+        get => _selectedMail;
         set
         {
-            _selectedMailText = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedMailText)));
-        }
-    }
-
-    public string? SelectedMailSender
-    {
-        get => _selectedMailSender;
-        set
-        {
-            _selectedMailSender = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedMailSender)));
-        }
-    }
-
-    public ObservableCollection<ReadMailCache.AttachmentListitem>? SelectedMailAttachmentList
-    {
-        get => _selectedMailAttachmentList;
-        set
-        {
-            _selectedMailAttachmentList = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedMailAttachmentList)));
+            _selectedMail = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedMail)));
         }
     }
 
@@ -68,7 +45,7 @@ public class GetMailViewModel : INotifyPropertyChanged
 
     public async Task GetMailsFromServer()
     {
-        await ReadMailAccountJson.GetUserContent();
+        await ReadMailAccount.GetUserContent();
     }
 
     public async Task GetUserAccounts()
@@ -78,12 +55,9 @@ public class GetMailViewModel : INotifyPropertyChanged
         UserAccounts = _userAccounts;
     }
 
-    public void SetSelectedMailText(string? mailText, string? mailSender,
-        ObservableCollection<ReadMailCache.AttachmentListitem>? attachmentList)
+    public void SetSelectedMailText(ReadMailCache.MailItem mailItem)
     {
-        SelectedMailText = mailText;
-        SelectedMailSender = mailSender;
-        SelectedMailAttachmentList = attachmentList;
+        SelectedMail = mailItem;
     }
 
     public void SetMailBoxSelection(ObservableCollection<ReadMailCache.MailItem>? mailBox)

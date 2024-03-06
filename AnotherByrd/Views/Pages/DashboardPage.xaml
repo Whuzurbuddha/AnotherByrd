@@ -9,6 +9,7 @@
     xmlns:fa="http://schemas.fontawesome.io/icons/"
     xmlns:models="clr-namespace:AnotherBird.Models"
     xmlns:converter1="clr-namespace:AnotherByrd.Converter"
+    xmlns:models1="clr-namespace:AnotherByrd.Models"
     Title="DashboardPage"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -18,7 +19,7 @@
     mc:Ignorable="d">
     
     <Page.DataContext>
-        <models:GetMailViewModel></models:GetMailViewModel>
+        <models1:GetMailViewModel></models1:GetMailViewModel>
     </Page.DataContext>
     <Page.Resources>
         <converter1:ToIconConverter x:Key="IconConverter"></converter1:ToIconConverter>
@@ -30,124 +31,105 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <ui:BreadcrumbBar 
-            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <ui:Button Click="CreateNewAccount">
-                <fa:ImageAwesome
-                    Height="50"
-                    Icon="UserPlus"
-                    Width="50" />
-            </ui:Button>
-            <ui:Button Click="OpenNewMailWindow" ToolTip="Write a new mail">
-                <Viewbox Height="50" Width="50">
-                    <Rectangle Height="20" Width="22">
-                        <Rectangle.Resources>
-                            <SolidColorBrush Opacity="0" x:Key="Canvas" />
-                            <SolidColorBrush
-                                Color="#212121"
-                                Opacity="0.1"
-                                x:Key="Light-Defaultgrey-10" />
-                            <SolidColorBrush
-                                Color="#212121"
-                                Opacity="1"
-                                x:Key="Light-Defaultgrey" />
-                        </Rectangle.Resources>
-                        <Rectangle.Fill>
-                            <DrawingBrush Stretch="None">
-                                <DrawingBrush.Drawing>
-                                    <DrawingGroup>
-                                        <DrawingGroup x:Name="Canvas">
-                                            <GeometryDrawing Brush="{DynamicResource Canvas}" Geometry="F1M16,16H0V0H16Z" />
-                                            <GeometryDrawing Brush="{DynamicResource Canvas}" Geometry="F1M16,16H0V0H16Z" />
-                                            <GeometryDrawing Brush="{DynamicResource Canvas}" Geometry="F1M16,16H0V0H16Z" />
-                                        </DrawingGroup>
-                                        <DrawingGroup x:Name="Level1">
-                                            <GeometryDrawing Brush="{DynamicResource Light-Defaultgrey-10}" Geometry="F1M14.5,3.5v9H8.938a4.62,4.62,0,0,0,.109-.968A4.253,4.253,0,0,0,7.6,8.212,5.053,5.053,0,0,0,4.131,6.973,5.163,5.163,0,0,0,1.5,7.659V3.5Z" />
-                                            <GeometryDrawing Brush="{DynamicResource Light-Defaultgrey-10}" Geometry="F1M14.5,3.5,8,8.5l-6.5-5Z" />
-                                            <GeometryDrawing Brush="{DynamicResource Light-Defaultgrey}" Geometry="F1M14.5,3H1.5L1,3.5V7.991A4.734,4.734,0,0,1,2,7.4V4.535L5.366,7.113A4.788,4.788,0,0,1,7.6,8.212a4.37,4.37,0,0,1,.627.684h.078L14,4.535V12H9.013a4.234,4.234,0,0,1-.206,1H14.5l.5-.5v-9ZM8,7.869,2.97,4H13.03Z" />
-                                            <GeometryDrawing Brush="{DynamicResource Light-Defaultgrey}" Geometry="F1M4.844,13.134H4.819a1.361,1.361,0,0,1-1.377,1.05,1.294,1.294,0,0,1-1.054-.491,2.028,2.028,0,0,1-.4-1.321,2.94,2.94,0,0,1,.55-1.826,1.727,1.727,0,0,1,1.447-.728,1.042,1.042,0,0,1,.611.188.846.846,0,0,1,.346.452h.015q.015-.136.073-.562H5.84q-.229,2.578-.23,2.627,0,.967.5.967a.88.88,0,0,0,.762-.539,2.841,2.841,0,0,0,.3-1.4A2.781,2.781,0,0,0,6.36,9.479a3.1,3.1,0,0,0-2.268-.8,3.03,3.03,0,0,0-2.3.971,3.413,3.413,0,0,0-.913,2.432A3.15,3.15,0,0,0,1.753,14.4a3.187,3.187,0,0,0,2.368.884,4.608,4.608,0,0,0,2.007-.4v.752A5.517,5.517,0,0,1,3.994,16a3.963,3.963,0,0,1-2.9-1.074A3.758,3.758,0,0,1,0,12.113,4.046,4.046,0,0,1,1.162,9.149,4,4,0,0,1,4.131,7.973a4.067,4.067,0,0,1,2.805.986,3.277,3.277,0,0,1,1.111,2.573,2.934,2.934,0,0,1-.6,1.907,1.83,1.83,0,0,1-1.472.745Q4.849,14.184,4.844,13.134Zm-.777-2.622a.989.989,0,0,0-.866.527,2.436,2.436,0,0,0-.33,1.314,1.39,1.39,0,0,0,.222.832.7.7,0,0,0,.594.3.946.946,0,0,0,.849-.554,2.972,2.972,0,0,0,.313-1.467Q4.849,10.512,4.067,10.512Z" />
-                                        </DrawingGroup>
-                                    </DrawingGroup>
-                                </DrawingBrush.Drawing>
-                            </DrawingBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                </Viewbox>
-            </ui:Button>
-            <ui:Button Click="OpenAnswerMailWindow" ToolTip="Answer email">
-                <fa:ImageAwesome
-                    Height="50"
-                    Icon="MailReply"
-                    Width="50" />
-            </ui:Button>
-            
-            <ui:Button Click="OpenAddressBook" ToolTip="Address book">
-                <fa:ImageAwesome Icon="AddressCardOutline" />
-            </ui:Button>
-            <ui:Button Click="OpenCalendar" ToolTip="Kalender">
-                <fa:ImageAwesome Icon="Calendar" />
-            </ui:Button>
-        </ui:BreadcrumbBar>
-     
-        <TreeView
-            Grid.Column="0"
-            Grid.Row="1"
-            ItemsSource="{Binding UserAccounts, UpdateSourceTrigger=PropertyChanged}"
-            Margin="5,10,3,0"
-            Width="200"
-            x:Name="ProviderOverview">
-            <TreeView.Resources>
-                <Style TargetType="TreeViewItem">
-                    <Setter Property="Foreground" Value="Silver" />
+        <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+              Margin="0,0,0,0">
+            <Menu.Resources>
+                <Style TargetType="fa:ImageAwesome">
+                    <Setter Property="Height" Value="20"></Setter>
+                    <Setter Property="Width" Value="20"></Setter>
+                    <Setter Property="Foreground" Value="Silver"></Setter>
                 </Style>
-            </TreeView.Resources>
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate>
-                    <TreeViewItem
-                        Expanded="SetMailSender"
-                        Header="{Binding AccountName}"
-                        IsExpanded="False"
-                        x:Name="ReceivedMailsOverview">
-                        <TreeViewItem.Resources>
-                            <Style TargetType="fa:FontAwesome">
-                                <Setter Property="Width" Value="30" />
-                            </Style>
-                        </TreeViewItem.Resources>
-                        <DockPanel MouseDown="ChooseMailbox">
-                            <fa:FontAwesome Icon="Inbox" />
-                            <TextBlock Text="  Inbox" />
-                        </DockPanel>
-                        <DockPanel>
-                            <fa:FontAwesome Icon="Trash" />
-                            <TextBlock Text="  Trash" />
-                        </DockPanel>
-                        <DockPanel>
-                            <fa:FontAwesome Icon="SendOutline" />
-                            <TextBlock Text="  Sent Mail" />
-                        </DockPanel>
-                    </TreeViewItem>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-        </TreeView>
-
-        <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"></Setter>
+                    <Setter Property="BorderBrush" Value="Silver"></Setter>
+                    <Setter Property="BorderThickness" Value="2"></Setter>
+                </Style>
+            </Menu.Resources>
+            <Border>
+                <ui:Button Click="CreateNewAccount">
+                    <fa:ImageAwesome Icon="UserPlus"></fa:ImageAwesome>
+                </ui:Button>
+            </Border>
+           <Border>
+                <ui:Button Click="OpenNewMailWindow" ToolTip="Write a new mail">
+                    <ui:SymbolIcon Symbol="Mail48" FontWeight="Black" FontSize="20"
+                                   Foreground="Silver"></ui:SymbolIcon>
+            </ui:Button>
+           </Border>
+            <Border>
+                <ui:Button Click="OpenAnswerMailWindow" ToolTip="Answer email">
+                    <fa:ImageAwesome Icon="Reply"></fa:ImageAwesome>
+                </ui:Button>
+            </Border>
+            <Border>
+                <ui:Button Click="OpenAddressBook" ToolTip="Address book">
+                    <fa:ImageAwesome Icon="AddressCardOutline" />
+                </ui:Button>
+            </Border>
+            <Border>
+                <ui:Button Click="OpenCalendar" ToolTip="Kalender">
+                    <fa:ImageAwesome Icon="Calendar" />
+                </ui:Button>
+            </Border>
+        </Menu>
+     
+        <Border Grid.Column="0" Grid.Row="1" BorderBrush="Silver" BorderThickness="1" CornerRadius="5"
+                Margin="1">
+            <ui:DynamicScrollViewer>
+            <TreeView
+                        ItemsSource="{Binding UserAccounts, UpdateSourceTrigger=PropertyChanged}"
+                        Width="200"
+                        x:Name="ProviderOverview"
+                        Margin="0,0,0,0">
+                <TreeView.Resources>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="Foreground" Value="Silver" />
+                    </Style>
+                </TreeView.Resources>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate>
+                        <ui:TreeViewItem
+                            Expanded="SetMailSender"
+                            Header="{Binding AccountName}"
+                            IsExpanded="False"
+                            x:Name="ReceivedMailsOverview">
+                            <TreeViewItem.Resources>
+                                <Style TargetType="fa:FontAwesome">
+                                    <Setter Property="Width" Value="30" />
+                                </Style>
+                            </TreeViewItem.Resources>
+                            <DockPanel MouseDown="ChooseMailbox">
+                                <fa:FontAwesome Icon="Inbox" />
+                                <TextBlock Text="  Inbox" />
+                            </DockPanel>
+                            <DockPanel>
+                                <fa:FontAwesome Icon="Trash" />
+                                <TextBlock Text="  Trash" />
+                            </DockPanel>
+                            <DockPanel>
+                                <fa:FontAwesome Icon="SendOutline" />
+                                <TextBlock Text="  Sent Mail" />
+                            </DockPanel>
+                        </ui:TreeViewItem>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </ui:DynamicScrollViewer>
+        </Border>
+        
+        <DockPanel Grid.Column="1" Grid.Row="1"
+                   Margin="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <DataGrid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" x:Name="ReceivedMailOverview"
+                <DataGrid Grid.Column="0" x:Name="ReceivedMailOverview"
                               BorderBrush="Silver"
                               BorderThickness="1"
-                              Foreground="Black"
                               FontSize="14"
                               AutoGenerateColumns="False"
                               ItemsSource="{Binding 
@@ -157,18 +139,14 @@
                               CanUserResizeRows="False" CanUserResizeColumns="True"
                               VerticalScrollBarVisibility="Hidden">
                         <DataGrid.Resources>
-                            <Style TargetType="DataGridRowHeader">
-                                <Setter Property="Background" Value="Silver"></Setter>
-                            </Style>
                             <Style TargetType="DataGridRow">
-                            <Setter Property="Background" Value="#FF231829"></Setter>
-                            <Setter Property="Foreground" Value="#FFDCAEAE"></Setter>
                                 <Setter Property="FontSize" Value="14"></Setter>
-                                <EventSetter Event="Selected" Handler="SetSender"></EventSetter>
+                                <EventSetter Event="MouseLeftButtonDown" Handler="SetSender"></EventSetter>
                             </Style>
                             <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Padding" Value="5, 15, 0,0 "/>
-                                <Setter Property="Background" Value="Silver"/>
+                                <Setter Property="Height" Value="35"></Setter>
+                                <Setter Property="Padding" Value="5, 5, 0,5 "/>
+                                <Setter Property="Background" Value="{DynamicResource ApplicationBackgroundBrush}"/>
                             </Style>
                             <Style TargetType="DataGridCell">
                                 <Setter Property="BorderThickness" Value="1,0.5,1,0.5"/>
@@ -233,48 +211,56 @@
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                <DockPanel Grid.Row="0" Grid.Column="1" Dock="Top"
+                <Border Grid.Column="1" Margin="1,0,0,0"
+                        CornerRadius="5" BorderBrush="Silver" BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                         <DockPanel Grid.Row="0" 
+                             Dock="Top"
                            MinWidth="400">
-                    <ComboBox
-                        Width="200"
-                        x:Name="AttachmentList"
-                        Background="Wheat"
-                        ItemsSource="{Binding SelectedMailAttachmentList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBox.Resources>
-                            <Style TargetType="ComboBoxItem">
-                                <EventSetter Event="Selected" Handler="SetFile"></EventSetter>
-                            </Style>
-                        </ComboBox.Resources>
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <fa:ImageAwesome Icon="{Binding Converter={StaticResource IconConverter}}"
-                                                     DataContext="{Binding AttachmentFileName}"
-                                                     Height="20"
-                                                     Width="20"></fa:ImageAwesome>
-                                    <TextBlock Text=" | ">  </TextBlock>
-                                    <TextBlock Padding="5,0,5,0" Width="100"
-                                                Text="{Binding Path=AttachmentFileName,
-                                    UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                                    <TextBlock Text=" | ">  </TextBlock>
-                                    <fa:ImageAwesome Icon="Download"
-                                                     DataContext="{Binding IsLoaded}"
-                                                     Height="20"
-                                                     Width="20"
-                                                     Margin="10,0,0,0"
-                                                     Visibility="Hidden"
-                                                     x:Name="IsLoadedIcon">
-                                    </fa:ImageAwesome>
-                                </StackPanel>
-                                <DataTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding IsLoaded}" Value="true">
-                                        <Setter TargetName="IsLoadedIcon" Property="Visibility" Value="Visible"></Setter>
-                                    </DataTrigger>
-                                </DataTemplate.Triggers>
-                            </DataTemplate> 
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <Label Background="Silver"
+                        <ComboBox
+                            Width="200"
+                            x:Name="AttachmentList"
+                            Background="Wheat"
+                            ItemsSource="{Binding SelectedMailAttachmentList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBox.Resources>
+                                <Style TargetType="ComboBoxItem">
+                                    <EventSetter Event="Selected" Handler="SetFile"></EventSetter>
+                                </Style>
+                            </ComboBox.Resources>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:ImageAwesome Icon="{Binding Converter={StaticResource IconConverter}}"
+                                                         DataContext="{Binding AttachmentFileName}"
+                                                         Height="20"
+                                                         Width="20"></fa:ImageAwesome>
+                                        <TextBlock Text=" | ">  </TextBlock>
+                                        <TextBlock Padding="5,0,5,0" Width="100"
+                                                    Text="{Binding Path=AttachmentFileName,
+                                        UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                        <TextBlock Text=" | ">  </TextBlock>
+                                        <fa:ImageAwesome Icon="Download"
+                                                         DataContext="{Binding IsLoaded}"
+                                                         Height="20"
+                                                         Width="20"
+                                                         Margin="10,0,0,0"
+                                                         Visibility="Hidden"
+                                                         x:Name="IsLoadedIcon">
+                                        </fa:ImageAwesome>
+                                    </StackPanel>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding IsLoaded}" Value="true">
+                                            <Setter TargetName="IsLoadedIcon" Property="Visibility" Value="Visible"></Setter>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate> 
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    <Label
                            HorizontalAlignment="Stretch"
                            IsHitTestVisible="False">
                         <TextBlock Text="{Binding 
@@ -284,7 +270,7 @@
                                    FontSize="16"></TextBlock>
                     </Label>
                 </DockPanel>
-                <DockPanel Grid.Row="1" Grid.Column="1">
+                <DockPanel Grid.Row="1">
                     <RichTextBox VerticalScrollBarVisibility="Hidden"
                                  Padding="30"
                                  MinWidth="400"
@@ -297,6 +283,8 @@
                         </FlowDocument>
                     </RichTextBox>
                 </DockPanel>
+                    </Grid>
+                </Border>
             </Grid>
         </DockPanel>
     </Grid>

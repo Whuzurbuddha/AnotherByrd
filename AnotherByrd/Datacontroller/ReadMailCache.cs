@@ -32,69 +32,41 @@ public abstract class ReadMailCache
             
             using var addressReader = new StreamReader(@$"{ConstPaths.MailAccounts}\{accountName}\Account.json");
             var addressContent = await addressReader.ReadToEndAsync();
-            var readJson = JsonSerializer.Deserialize<ReadMailAccountJson>(addressContent);
+            var readJson = JsonSerializer.Deserialize<ReadMailAccount>(addressContent);
             var mailAddress = readJson?.UserMail;
             var smtp = readJson?.Smtp;
             var imap = readJson?.Imap;
             var encryptedPwd = readJson?.Passwd;
+            
+            var database = @$"{ConstPaths.MailAccounts}\{accountName}\{accountName}.db";
+            
+            var db = new LiteDatabaseAsync(database);
+
+            var provider = db.GetCollection<MailItem>("Messages");
+
+            var mails = await provider.Query()
+                .Select(x => new MailItem
+                {
+                    Date = x.Date,
+                    MessageId = x.MessageId,
+                    MessageSubject = x.MessageSubject,
+                    MessageText = x.MessageText,
+                    MessageSender = x.MessageSender,
+                })
+                .ToArrayAsync();
+
+            var mailList = new ObservableCollection<MailItem>(mails);
             
             var userContent = new UserContent
             {
                 AccountName = accountName,
                 MailAddress = mailAddress,
                 Smtp = smtp,
-                EncryptedPwd = encryptedPwd
-            };
-            
-            var mailList = Directory.GetDirectories($@"{account}\Temp\");
-            if (mailList.Length != 0)
-            {
-                foreach (var mail in mailList)
-                {
-                    var mailDir = @$"{mail}\";
-                    var mailFile = Directory.GetFiles(mailDir);
-                    if (mailFile.Length == 0) continue;
-                    using var reader = new StreamReader(mailFile[0]);
-                    
-                    var db = new LiteDatabaseAsync(mailFile.First());
-                    
-                    try
-                    {
-                        var mailContent = db.GetCollection<MailItem>(mailFile.First());
-
-                        var mailItem = await mailContent.Query()
-                            .Select(x => new MailItem
-                            {
-                                Date = x.Date,
-                                MessageId = x.MessageId,
-                                MessageSubject = x.MessageSubject,
-                                MessageSender = x.MessageSender,
-                                MessageText = x.MessageText,
-                                AttachmentList = x.AttachmentList,
-                                HasAttachment = x.HasAttachment,
-                                AttachmentPath = x.AttachmentPath
-                            }).ToArrayAsync();
-
-                        if(mailItem != null)
-                        {
-                            _mailBox.Add(mailItem.First());
-                        }
-                        else
-                        {
-                            Console.WriteLine("RESULT != NULL");
-                        }
-                        
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine($"ERROR MAILBOX: {e}");
-                        throw;
-                    }
-                }
-                userContent.Mailbox = _mailBox;
+                EncryptedPwd = encryptedPwd,
+                Mailbox = mailList
             };
             _userAccounts.Add(userContent);
-
+            db.Dispose();
         }
         return _userAccounts;
     }
