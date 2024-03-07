@@ -1,0 +1,53 @@
+﻿<Window x:Class="AnotherByrd.Views.Windows.NewContact"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:pages="clr-namespace:AnotherByrd.Views.Pages"
+        xmlns:data="clr-namespace:AnotherByrd.ViewModels.Windows"
+        ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+        ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+        mc:Ignorable="d"
+        Height="380" Width="300"
+        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+        Background="{DynamicResource ApplicationBackgroundBrush}"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    <Window.DataContext>
+        <data:ContactViewmodel></data:ContactViewmodel>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Width="200" Margin="0,20,0,0">
+            <ui:TextBox Text="{Binding Firstname,Mode=TwoWay}"
+                        PlaceholderText="First name"></ui:TextBox>
+            <ui:TextBox Text="{Binding Lastname,Mode=TwoWay}"
+                        PlaceholderText="Last name"
+                        Margin="0,3,0,0"></ui:TextBox>
+            <ui:TextBox Text="{Binding Address,Mode=TwoWay}"
+                        PlaceholderText="Address"
+                        Margin="0,3,0,0"></ui:TextBox>
+            <ui:TextBox Text="{Binding Number,Mode=TwoWay}"
+                        PlaceholderText="Number"
+                        Margin="0,3,0,0"></ui:TextBox>
+            <ui:TextBox Text="{Binding City,Mode=TwoWay}"
+                        PlaceholderText="City"
+                        Margin="0,3,0,0"></ui:TextBox>
+            <ui:TextBox Text="{Binding Postcode,Mode=TwoWay}"
+                        PlaceholderText="Postcode"
+                        Margin="0,3,0,0"></ui:TextBox>
+            <ui:TextBox Text="{Binding Mobilephone,Mode=TwoWay}"
+                        PlaceholderText="Mobile phone"
+                        Margin="0,3,0,0"></ui:TextBox>
+            <ui:TextBox Text="{Binding Email,Mode=TwoWay}"
+                        PlaceholderText="Email"
+                        Margin="0,3,0,0"></ui:TextBox>
+            <DockPanel HorizontalAlignment="Center">
+                <ui:Button Margin="5,10,0,0" Click="SaveNew">Save</ui:Button>
+                <ui:Button Margin="5,10,0,0" Click="CloseWindow">Abort</ui:Button>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>

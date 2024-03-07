@@ -2,7 +2,6 @@
 using System.IO;
 using System.Windows.Controls;
 using AnotherBird;
-using AnotherBird.Models;
 using AnotherBird.ViewModels.Pages;
 using AnotherBird.Views.Windows;
 using AnotherByrd.Datacontroller;

@@ -77,3 +77,9 @@ C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\bin\Debug\net8.0-window
 C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Pages\FileView.baml
 C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Windows\NewAccount.baml
 C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\AnotherByrd.sourcelink.json
+C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Pages\Addressbook.g.cs
+C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Pages\Addressbook.baml
+C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Windows\NewContact.g.cs
+C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Windows\NewContact.baml
+C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Windows\Contact.g.cs
+C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\obj\Debug\net8.0-windows\Views\Windows\Contact.baml

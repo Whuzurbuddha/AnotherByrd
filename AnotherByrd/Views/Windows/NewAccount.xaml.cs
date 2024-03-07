@@ -70,5 +70,10 @@ namespace AnotherBird.Views.Windows
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Imap)));
             }
         }
+
+        private void CloseWindow(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Close();
+        }
     }
 }

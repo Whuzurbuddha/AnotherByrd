@@ -14,7 +14,7 @@ public class ReadMailAccount
     public static async Task GetUserContent()
     {
         var mainDirectory = ConstPaths.MainDirectory;
-        var mailAccounts = Directory.GetDirectories($@"{mainDirectory}\\mailaccounts"!);
+        var mailAccounts = Directory.GetDirectories($@"{mainDirectory}\mailaccounts"!);
 
         if (mailAccounts.Length == 0) return;
             
@@ -22,7 +22,7 @@ public class ReadMailAccount
         {
             try
             {
-                using var reader = new StreamReader($"{filePath}\\Account.json");
+                using var reader = new StreamReader(@$"{filePath}\Account.json");
                 var jsonContent = await reader.ReadToEndAsync();
                 var readJson = JsonSerializer.Deserialize<ReadMailAccount>(jsonContent);
                 var userMail = readJson?.UserMail;

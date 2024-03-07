@@ -4,7 +4,7 @@
 // All Rights Reserved.
 
 using System.Windows.Media;
-using AnotherBird.Models;
+using AnotherByrd.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Wpf.Ui.Controls;
 

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Alexander\RiderProjects\AnotherByrd\AnotherByrd\App.xaml
-6908935893
+91946848540
 41284138463
-372017057536
+441118867520
 236448256012
-Views\Pages\DashboardPage.xaml;Views\Pages\DataPage.xaml;Views\Pages\FileView.xaml;Views\Pages\SettingsPage.xaml;Views\Windows\MainWindow.xaml;Views\Windows\NewAccount.xaml;
+Views\Pages\Addressbook.xaml;Views\Pages\DashboardPage.xaml;Views\Pages\DataPage.xaml;Views\Pages\FileView.xaml;Views\Pages\SettingsPage.xaml;Views\Windows\Contact.xaml;Views\Windows\MainWindow.xaml;Views\Windows\NewAccount.xaml;Views\Windows\NewContact.xaml;
 
 False
 

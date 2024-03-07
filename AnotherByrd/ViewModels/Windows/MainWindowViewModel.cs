@@ -4,6 +4,7 @@
 // All Rights Reserved.
 
 using System.Collections.ObjectModel;
+using FontAwesome.WPF;
 using Wpf.Ui.Controls;
 
 namespace AnotherByrd.ViewModels.Windows
@@ -18,15 +19,13 @@ namespace AnotherByrd.ViewModels.Windows
         {
             new NavigationViewItem()
             {
-                Content = "Home",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.Home24 },
+                Icon = new SymbolIcon { Symbol = SymbolRegular.Mail48, ToolTip = "Mails"},
                 TargetPageType = typeof(Views.Pages.DashboardPage)
             },
-            new NavigationViewItem()
+            new NavigationViewItem
             {
-                Content = "Data",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.DataHistogram24 },
-                TargetPageType = typeof(Views.Pages.DataPage)
+                Icon = new SymbolIcon{Symbol = SymbolRegular.Book20, ToolTip = "Contacts"},
+                TargetPageType = typeof(Views.Pages.Addressbook)
             }
         };
 

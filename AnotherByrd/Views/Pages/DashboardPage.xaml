@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:fa="http://schemas.fontawesome.io/icons/"
-    xmlns:models="clr-namespace:AnotherBird.Models"
     xmlns:converter1="clr-namespace:AnotherByrd.Converter"
     xmlns:models1="clr-namespace:AnotherByrd.Models"
     Title="DashboardPage"

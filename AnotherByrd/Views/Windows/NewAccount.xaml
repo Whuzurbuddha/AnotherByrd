@@ -9,9 +9,10 @@
         ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
         ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
         mc:Ignorable="d"
-        Title="NewAccount" Height="450" Width="800"
+        Title="NewAccount" Height="460" Width="500"
         Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-        Background="{DynamicResource ApplicationBackgroundBrush}">
+        Background="{DynamicResource ApplicationBackgroundBrush}"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
     <Grid>
         <StackPanel HorizontalAlignment="Center"
                     Margin="0,50,0,0"
@@ -45,7 +46,7 @@
                     <ui:Button Click="SaveNewAccount"
                                Margin="5">Save</ui:Button>
                     <ui:Button
-                        Margin="5">Abort</ui:Button>
+                        Margin="5" Click="CloseWindow">Abort</ui:Button>
                 </DockPanel>
             </StackPanel>
         </StackPanel>

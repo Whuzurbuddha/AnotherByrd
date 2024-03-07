@@ -5,7 +5,7 @@
 
 using System.Windows.Media;
 
-namespace AnotherBird.Models
+namespace AnotherByrd.Models
 {
     public struct DataColor
     {
